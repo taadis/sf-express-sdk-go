@@ -22,3 +22,11 @@ func TestNewClient(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+// 测试生成认证码函数
+func TestComputeVerifyCode(t *testing.T) {
+	verifyCode := computeVerifyCode("123456")
+	if verifyCode != "4QrcOUm6Wau+VuBX8g+IPg==" {
+		t.Fail()
+	}
+}

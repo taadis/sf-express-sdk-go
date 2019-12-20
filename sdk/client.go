@@ -1,6 +1,9 @@
 package sdk
 
 import (
+	"bytes"
+	"crypto/md5"
+	"encoding/base64"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -43,4 +46,12 @@ func (client *Client) ExpressService(xmlRequest string, checkCode string) (xmlRe
 	}
 	xmlResponse = string(body[:])
 	return xmlResponse, nil
+}
+
+// 生成认证码
+func computeVerifyCode(s string) (verifyCode string) {
+	buffer := bytes.NewBufferString(s)
+	md5Bytes := md5.Sum(buffer.Bytes())
+	verifyCode = base64.StdEncoding.EncodeToString(md5Bytes[:])
+	return verifyCode
 }
