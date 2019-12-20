@@ -25,10 +25,22 @@ func NewClient() (client *Client, err error) {
 
 // 干活
 func (client *Client) ExpressService(xmlRequest string, checkCode string) (xmlResponse string, err error) {
+
+	// verifyCode
+	xmlWithCheckCodeBuffer := bytes.NewBufferString(xmlRequest)
+	xmlWithCheckCodeBuffer.WriteString(checkCode)
+	verifyCode := computeVerifyCode(xmlWithCheckCodeBuffer.String())
+
+	// postData
+	postDataBuffer := bytes.NewBufferString("xml=")
+	postDataBuffer.WriteString(xmlRequest)
+	postDataBuffer.WriteString("&verifyCode=")
+	postDataBuffer.WriteString(verifyCode)
+
 	req, err := http.NewRequest(
-		"POST",                        //method string,
-		client.url,                    //url string,
-		strings.NewReader(xmlRequest), //body io.Reader,
+		"POST",     //method string,
+		client.url, //url string,
+		strings.NewReader(postDataBuffer.String()), //body io.Reader,
 	)
 	if err != nil {
 		panic(err)
