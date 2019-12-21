@@ -13,14 +13,17 @@ var (
 	checkWord  = flag.String("checkWord", "", "校检码")
 )
 
-// 测试新客户端
-func TestNewClient(t *testing.T) {
+// 解析命令行参数
+func parseArgs(t *testing.T) {
 	if !flag.Parsed() {
 		flag.Parse()
 	}
-	xxx := "xxx"
-	t.Log("agrs=", xxx, *checkWord)
+	t.Logf("-args -checkWord %s -checkWord %s", *clientCode, *checkWord)
+}
 
+// 测试新客户端
+func TestNewClient(t *testing.T) {
+	parseArgs(t)
 	xmlRequest := `
 <Request service="OrderService" lang="zh-CN">
   <Head>clientCode</Head>
@@ -50,9 +53,7 @@ func TestNewClient(t *testing.T) {
 
 // 测试生成认证码函数
 func TestComputeVerifyCode(t *testing.T) {
-	if !flag.Parsed() {
-		flag.Parse()
-	}
+	parseArgs(t)
 	verifyCode := computeVerifyCode("123456")
 	if verifyCode != "4QrcOUm6Wau+VuBX8g+IPg==" {
 		t.Fail()
