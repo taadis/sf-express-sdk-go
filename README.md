@@ -32,4 +32,12 @@ go get github.com/taadis/sf-express-sdk-go@latest
 // go get github.com/taadis/sf-express-sdk-go@v0.0.1
 ```
 
+## 测试
+
+为了方便测试以及保护顾客编码和校检码, 这里可以通过附加参数 `-agrs` 来指定你的顾客编码和校检码
+
+```
+go test -v -args -clientCode 你的顾客编码 -checkWord 你的校检码
+```
+
 > 更多的示例可以参考各 `_test` 文件, 或者提个 issue 吧...
