@@ -17,7 +17,7 @@
 可以使用 `go get` 把 SDK 下载到你的 GOPATH 工作目录
 
 ```
-go get github.com/taadis/sf-express-sdk-go
+go get gitee.com/taadis/sf-express-sdk-go
 ```
 
 ### Go Modules
@@ -26,10 +26,10 @@ go get github.com/taadis/sf-express-sdk-go
 
 ```
 // 获取最新版本
-go get github.com/taadis/sf-express-sdk-go@latest
+go get gitee.com/taadis/sf-express-sdk-go@latest
 
 // 当然你也可以指定具体的版本
-// go get github.com/taadis/sf-express-sdk-go@v0.0.1
+// go get gitee.com/taadis/sf-express-sdk-go@v0.0.1
 ```
 
 ## 测试
