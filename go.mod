@@ -1,3 +1,3 @@
-module gitee.com/taadis/sf-express-sdk-go
+module github.com/taadis/sf-express-sdk-go
 
 go 1.11
